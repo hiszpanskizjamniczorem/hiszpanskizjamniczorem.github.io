@@ -1,23 +1,3 @@
-const wordsData = `
-Hola,Cześć,Podstawy
-Adiós,Do widzenia,Podstawy
-Por favor,Proszę,Podstawy
-Gracias,Dziękuję,Podstawy
-Perro,Pies,Zwierzęta
-Gato,Kot,Zwierzęta
-Ratón,Mysz,Zwierzęta
-Pájaro,Ptak,Zwierzęta
-Agua,Woda,Jedzenie
-Pan,Chleb,Jedzenie
-Queso,Ser,Jedzenie
-Manzana,Jabłko,Jedzenie
-Rojo,Czerwony,Kolory
-Azul,Niebieski,Kolory
-Verde,Zielony,Kolory
-Amarillo,Żółty,Kolory
-Jamniczorem,Jamnik (żart.),Zwierzęta
-`;
-
 class FlashcardApp {
     constructor() {
         this.words = [];
@@ -33,21 +13,39 @@ class FlashcardApp {
         this.init();
     }
 
-    init() {
-        this.parseCSV(wordsData);
-        this.renderCategories();
-        this.setupEventListeners();
-        this.resizeCanvas();
-        window.addEventListener('resize', () => this.resizeCanvas());
-        requestAnimationFrame(() => this.animateConfetti());
+    async init() {
+        try {
+            const response = await fetch('data/words.csv');
+            if (!response.ok) throw new Error('Błąd pobierania pliku CSV');
+            const csvData = await response.text();
+            this.parseCSV(csvData);
+            this.renderCategories();
+            this.setupEventListeners();
+            this.resizeCanvas();
+            window.addEventListener('resize', () => this.resizeCanvas());
+            requestAnimationFrame(() => this.animateConfetti());
+        } catch (error) {
+            console.error('Błąd podczas ładowania słówek:', error);
+            document.getElementById('categories-grid').innerHTML = '<p>Nie udało się załadować bazy słówek. Upewnij się, że serwer działa prawidłowo.</p>';
+        }
     }
 
     parseCSV(csvData) {
         const lines = csvData.trim().split('\n');
-        this.words = lines.map(line => {
-            const [spanish, polish, category] = line.split(',');
-            return { spanish: spanish.trim(), polish: polish.trim(), category: category.trim() };
-        });
+        this.words = [];
+        // Zaczynamy od 1 aby pominąć nagłówek "słówko;tłumaczenie;lekcja"
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i].trim();
+            if (!line) continue;
+            const parts = line.split(';');
+            if (parts.length >= 3) {
+                this.words.push({ 
+                    spanish: parts[0].trim(), 
+                    polish: parts[1].trim(), 
+                    category: parts[2].trim() 
+                });
+            }
+        }
 
         this.categories = [...new Set(this.words.map(w => w.category))];
     }
