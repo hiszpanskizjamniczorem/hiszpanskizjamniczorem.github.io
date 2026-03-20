@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiszpański z Jamniczorem - Fiszki</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <img src="images/logo_original.png" alt="Hiszpański z Jamniczorem Logo" class="header-logo">
+        <div class="header-content">
+            <h1>Fiszki z Jamniczorem</h1>
+            <p>Wybierz kategorię i rozpocznij naukę!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Categories View -->
+        <section id="categories-view">
+            <div class="categories-grid" id="categories-grid">
+                <!-- Tiles will be dynamically injected here -->
+            </div>
+        </section>
+
+        <!-- Flashcard View (Hidden by default) -->
+        <section id="flashcard-view" class="hidden">
+            <button id="back-btn" class="secondary-btn">← Wróć do kategorii</button>
+            <div class="flashcard-container">
+                <div class="flashcard">
+                    <span id="category-badge" class="category-badge"></span>
+                    <h2 id="spanish-word">Cargando...</h2>
+                </div>
+                <div class="options-grid" id="options-grid">
+                    <!-- Options injected here -->
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p id="stats" class="stats-text">Poprawne: 0</p>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <img src="images/logo.png" alt="Hiszpański z Jamniczorem Logo" class="footer-logo">
+        <p>&copy; 2026 Hiszpański z Jamniczorem - Nauka przez zabawę!</p>
+    </footer>
+
+    <!-- Animations Elements -->
+    <img src="images/jamnik1.png" alt="Zadowolony Jamnik" id="happy-dog" class="happy-dog">
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
