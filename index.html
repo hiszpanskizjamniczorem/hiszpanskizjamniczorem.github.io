@@ -4,56 +4,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiszpański z Jamniczorem - Fiszki</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Hiszpański z jamniczorem</title>
+    <meta name="description"
+        content="Hiszpański z Jamniczorem! Ucz się hiszpańskiego z Julką i Mango 🐶🇪🇸. Darmowa lekcja próbna, luźna atmosfera i szybkie efekty!">
+    <!-- Preconnect to Google Fonts and Fontshare -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Use Inter and Pally fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=pally@400,500,700&display=swap" rel="stylesheet">
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <header class="main-header">
-        <img src="images/logo_original.png" alt="Hiszpański z Jamniczorem Logo" class="header-logo">
-        <div class="header-content">
-            <h1>Fiszki z Jamniczorem</h1>
-            <p>Wybierz kategorię i rozpocznij naukę!</p>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">
+                <img src="Strona HZJ/Assets/Hjz_logo.svg" alt="Hiszpański z jamniczorem Logo">
+            </a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle menu">
+                ☰
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="#about-me">O mnie</a>
+                <a href="#reviews">Opinie</a>
+                <a href="#ebook">E-book</a>
+                <a href="stronka_julka_fiszki/index.html">Fiszki</a>
+                <a href="#cta-bottom" class="btn btn-secondary btn-nav">Zapisz się🔥</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container">
-        <!-- Categories View -->
-        <section id="categories-view">
-            <div class="categories-grid" id="categories-grid">
-                <!-- Tiles will be dynamically injected here -->
-            </div>
-        </section>
-
-        <!-- Flashcard View (Hidden by default) -->
-        <section id="flashcard-view" class="hidden">
-            <button id="back-btn" class="secondary-btn">← Wróć do kategorii</button>
-            <div class="flashcard-container">
-                <div class="flashcard">
-                    <span id="category-badge" class="category-badge"></span>
-                    <h2 id="spanish-word">Cargando...</h2>
-                </div>
-                <div class="options-grid" id="options-grid">
-                    <!-- Options injected here -->
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h2 style="color: var(--primary-yellow); font-weight: 800; font-size: 1.5rem; margin-bottom: 10px;">
+                    ¡HOLA! 💃☀️</h2>
+                <h1 class="hero-title">Cześć! Jestem <span class="highlight-yellow">Julka</span> i nauczę cię <span
+                        class="highlight-yellow">hiszpańskiego</span> 🇪🇸</h1>
+                <p class="hero-subtitle">Wpadaj na <strong>darmową 30-minutową lekcję</strong> próbną i sprawdź, jak
+                    wyglądają zajęcia w <strong>jamniczym</strong> towarzystwie!</p>
+                <div class="hero-buttons">
+                    <a href="https://cal.com/hiszpanskizjamniczorem/30min"
+                        class="btn btn-primary btn-large btn-hero">Zapisz mnie na bezpłatną lekcję!🔥</a>
+                    <div class="hero-image-placeholder">
+                        <img src="Strona HZJ/new/jamnik_mowi_1.png" alt="jamnik" class="hero-bubble">
+                    </div>
                 </div>
             </div>
-
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
+            <div class="hero-image">
+                <img src="Strona HZJ/Assets/Hero_1.png" alt="Julka i jamnik Mango" class="hero-main-img"
+                    onerror="this.src='Strona HZJ/Assets/Hero_image.png'">
             </div>
-            <p id="stats" class="stats-text">Poprawne: 0</p>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="main-footer">
-        <img src="images/logo.png" alt="Hiszpański z Jamniczorem Logo" class="footer-logo">
-        <p>&copy; 2026 Hiszpański z Jamniczorem - Nauka przez zabawę!</p>
+    <!-- Poznajmy się -->
+    <section class="about-me" id="about-me">
+        <div class="container about-container">
+            <div class="about-image">
+                <img src="Strona HZJ/new/julka_i_mango.png" alt="Julka i Mango poznajmy się">
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">Poznajmy się 🤝</h2>
+                <div class="about-text">
+                    <p><strong>Cześć! Jestem Julka, a to moja jamnicza przyjaciółka Mango. Chcemy razem Cię nauczyć
+                            hiszpańskiego! 😃</strong></p>
+                    <p>Moja przygoda z hiszpańskim zaczęła się gdy miałam 13 lat, od dziecinnego serialu “Violetta”, Od
+                        tamtego czasu hiszpański stał się moją pasją! Zdawałam maturę podstawową i rozszerzoną z tego
+                        języka, pracowałam w szkole językowej jako lektor hiszpańskiego i teraz przygotowuje się do
+                        egzaminu DELE.</p>
+                    <p>Kocham język hiszpański i zawsze staram się sprawić aby lekcja była przyjemna jak jedzenie
+                        churros z czekoladą! 😍</p>
+                    <p>Zresztą, nie musisz mi wierzyć na słowo, zobacz co mówią o mnie moi uczniowie!</p>
+                </div>
+                <div style="margin-top: 30px; text-align: center;">
+                    <img src="Strona HZJ/Assets/Jamnik bubble/Jamnik_gada_2.png" alt="Mango mówi" loading="lazy"
+                        style="max-width: 320px; animation: floatingBubble 6s ease-in-out infinite;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opinie -->
+    <section class="reviews" id="reviews">
+        <!-- <img src="Strona HZJ/Assets/Jamnik bubble/Jamnik_gada_2.png" alt="Mango mówi" class="jamnik-bubble pos-2"
+            loading="lazy"> -->
+        <div class="container">
+            <h2 class="section-title text-center">Zobacz co mówią o mnie moi uczniowie 🧑‍🎓</h2>
+
+            <div class="reviews-slider-container">
+                <div class="reviews-wrapper" id="reviews-slider">
+                    <!-- Iteracja przez wszystkie opinie zgodnie z folderem /Assets/Opinie -->
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 1.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 2.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 3.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 4.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 5.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 6.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 7.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 8.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                    <div class="review-card"><img src="Strona HZJ/Assets/Opinie/Opinia 9.png" alt="Opinia ucznia"
+                            loading="lazy"></div>
+                </div>
+                <div class="reviews-nav-mobile">
+                    <button id="prev-review" class="slider-btn" aria-label="Poprzednia opinia">←</button>
+                    <button id="next-review" class="slider-btn" aria-label="Następna opinia">→</button>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="https://cal.com/hiszpanskizjamniczorem/30min" class="btn btn-primary">Zapisz mnie na bezpłatną
+                    lekcję!🔥</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Korzyści / Benefits -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title text-center">Czemu hiszpański z jamniczorem to dobry pomysł? ⭐</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon-area">
+                        <img src="Strona HZJ/Assets/Sekcja_4_1.png" alt="Zaczniesz mówić od razu" class="benefit-img">
+                    </div>
+                    <div class="benefit-text-area">
+                        <h3>Zaczniesz mówić od razu</h3>
+                        <p>Na zajęciach od samego początku uczysz się praktycznych słów i zwrotów, które możesz użyć w
+                            szkole, w pracy czy też podczas podróży do Hiszpanii! 🇪🇸</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon-area">
+                        <img src="Strona HZJ/Assets/friends.png" alt="+500 milionów znajomych" class="benefit-img">
+                    </div>
+                    <div class="benefit-text-area">
+                        <h3>+500 milionów znajomych</h3>
+                        <p>Hiszpański to drugi najczęściej używany język na świecie. Zapisując się na lekcję, otwierasz
+                            drzwi do kultury, podróży i ludzi.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon-area">
+                        <img src="Strona HZJ/Assets/Sekcja_4_3.png" alt="Nauka bez spiny (z jamnikiem)"
+                            class="benefit-img">
+                    </div>
+                    <div class="benefit-text-area">
+                        <h3>Nauka bez spiny (z jamnikiem)</h3>
+                        <p>Tradycyjne lekcje kojarzą się ze stresem i presją. U nas dostajesz luz, humor i wsparcie
+                            Mango 🐶.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="https://cal.com/hiszpanskizjamniczorem/30min" class="btn btn-secondary">Zapisz mnie na
+                    bezpłatną lekcję!🔥</a>
+
+            </div>
+    </section>
+
+    <!-- Jak zapisać -->
+    <section class="steps" id="steps">
+
+        <div class="container">
+            <div class="steps-wrapper">
+                <div class="steps-content">
+                    <h2 class="section-title">Jak mogę się zapisać na bezpłatną lekcję próbną?</h2>
+                    <p class="steps-intro">Mango już czeka, żeby Cię poznać! Zapis na zajęcia jest bardzo prosty. Patrz!
+                    </p>
+
+                    <ul class="steps-list">
+                        <li>
+                            <div class="step-num">1</div>
+                            <div class="step-text">Klikasz w przycisk zapisu i przechodzisz do strony cal.com. Tam
+                                możesz wybrać pasujący Ci termin. Całość zajmie ci mniej niż minutę ⏱️</div>
+                        </li>
+                        <li>
+                            <div class="step-num">2</div>
+                            <div class="step-text">Na maila otrzymujesz informację zwrotną z potwierdzeniem godziny
+                                zajęć, link do spotkania oraz arkusz pracy</div>
+                        </li>
+                        <li>
+                            <div class="step-num">3</div>
+                            <div class="step-text">Uruchamiasz spotkanie o wyznaczonej godzinie i przez 30 minut uczymy
+                                się hiszpańskiego 🇪🇸 Jeśli ci się spodoba, możesz kontynuować ze mną naukę!</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="steps-image">
+                    <img src="Strona HZJ/Png/Julka+jamnik_3.png" alt="Zapisz się z Mango">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ebook promocyjny -->
+    <section class="ebook" id="ebook">
+        <div class="container ebook-container">
+            <div class="ebook-content">
+                <h2 class="section-title text-white">Odbierz e-booka 📕</h2>
+                <div class="ebook-text">
+                    <p>Przygotowałam (razem z Mango) krótkiego e-booka, który uratuje Ci życie na wakacjach.</p>
+                    <p>Zawiera najważniejsze zwroty i wyrażenia, które mogą Ci się przydać w różnych sytuacjach 😃</p>
+                </div>
+                <a href="https://drive.google.com/file/d/1N-xSL8tQQUrRSjidIQmt_T-zFHUep8X6/view" target="_blank"
+                    class="btn btn-secondary btn-large">Odbieram bezpłatnego e-booka</a>
+                <div style="margin-top: 30px;">
+                    <img src="Strona HZJ/Assets/Jamnik bubble/Jamink_gada_8.png" alt="Mango mówi" loading="lazy"
+                        style="max-width: 320px; animation: floatingBubble 6s ease-in-out infinite;">
+                </div>
+            </div>
+            <div class="ebook-image">
+                <img src="Strona HZJ/Png/Julka_ebook.png" alt="Odbierz e-booka">
+            </div>
+        </div>
+    </section>
+
+    <!-- Finalne wezwanie do działania -->
+    <section class="final-cta" id="cta-bottom">
+        <div class="container final-cta-container">
+            <div class="final-cta-content">
+                <h2 class="section-title">Jeszcze się nie zapisałeś? 😥</h2>
+                <p class="final-cta-subtitle">Mango nie może się doczekać lekcji z tobą!</p>
+                <p class="final-cta-text">Mimo, że chciałabym uczyć każdego, jestem zapracowanym jamnikiem i mój czas
+                    jest
+                    niestety ograniczony 😢</p>
+                <p class="final-cta-text">Więc śpiesz się i znajdź wolny termin dla siebie już teraz!</p>
+                <div class="mt-5">
+                    <a href="https://cal.com/hiszpanskizjamniczorem/30min"
+                        class="btn btn-primary btn-large pulse-animation">Zapisz mnie na bezpłatną lekcję!🔥</a>
+                </div>
+            </div>
+            <div class="final-cta-image">
+                <img src="Strona HZJ/Assets/Sekcja_7.png" alt="Zapisz się z Mango">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <h3>Julia Murdzek</h3>
+                <p>Ucz się bez spiny! 🐶🇪🇸</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about-me">O mnie</a>
+                <a href="#reviews">Opinie</a>
+                <a href="#ebook">E-book</a>
+                <a href="stronka_julka_fiszki/index.html">Fiszki</a>
+                <a href="https://cal.com/hiszpanskizjamniczorem/30min">Zapisz się</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Hiszpański z jamniczorem. Wszelkie prawa zastrzeżone.</p>
+        </div>
     </footer>
 
-    <!-- Animations Elements -->
-    <img src="images/jamnik1.png" alt="Zadowolony Jamnik" id="happy-dog" class="happy-dog">
-    <canvas id="confetti-canvas"></canvas>
-
+    <!-- Local Script -->
     <script src="script.js"></script>
 </body>
 
