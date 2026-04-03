@@ -296,13 +296,11 @@ ul {
 }
 
 .hero-main-img {
-    width: 120%;
-    /* Pozwala zdjęciu zajmować 120% szerokości diva hero-image */
+    width: 100%;
     max-width: none;
-    /* Wyłączamy wymuszanie 100% z .img global */
-    transform: scale(1.4) translateX(250px);
-    /* Delikatne powiększenie i wepchnięcie poza prawy margines */
+    transform: scale(1.4) translateX(40%);
     transform-origin: right bottom;
+    display: block;
 }
 
 @keyframes float {
