@@ -5,8 +5,10 @@ class FlashcardApp {
         this.currentCategory = null;
         this.currentWord = null;
         this.score = 0;
+        this.wrongScore = 0;
         this.totalAnswered = 0;
         this.audio = new Audio('coin.mp3');
+        this.errorAudio = new Audio('error_sound.mp3');
         this.ctx = document.getElementById('confetti-canvas').getContext('2d');
         this.particles = [];
 
@@ -20,7 +22,7 @@ class FlashcardApp {
                 // Dekodowanie z Base64 (ze wsparciem UTF-8)
                 csvData = decodeURIComponent(escape(atob(window.FLASHCARD_CSV_B64)));
             } else {
-                const response = await fetch('data/words.csv');
+                const response = await fetch('data/words_updated.csv');
                 if (!response.ok) throw new Error('Błąd pobierania pliku CSV');
                 csvData = await response.text();
             }
@@ -48,7 +50,8 @@ class FlashcardApp {
                 this.words.push({
                     spanish: parts[0].trim(),
                     polish: parts[1].trim(),
-                    category: parts[2].trim()
+                    category: parts[2].trim(),
+                    correctCount: 0
                 });
             }
         }
@@ -79,7 +82,15 @@ class FlashcardApp {
     startCategory(category) {
         this.currentCategory = category;
         this.score = 0;
+        this.wrongScore = 0;
         this.totalAnswered = 0;
+
+        const categoryWords = this.words.filter(w => w.category === category);
+        const unlearnedWords = categoryWords.filter(w => w.correctCount < 2);
+        if (unlearnedWords.length === 0) {
+            categoryWords.forEach(w => w.correctCount = 0);
+        }
+
         this.updateStats();
 
         document.getElementById('categories-view').classList.add('hidden');
@@ -91,9 +102,23 @@ class FlashcardApp {
 
     nextCard() {
         const categoryWords = this.words.filter(w => w.category === this.currentCategory);
-        this.currentWord = categoryWords[Math.floor(Math.random() * categoryWords.length)];
+        const unlearnedWords = categoryWords.filter(w => w.correctCount < 2);
 
-        document.getElementById('spanish-word').textContent = this.currentWord.spanish;
+        if (unlearnedWords.length === 0) {
+            setTimeout(() => {
+                alert('Gratulacje! Nauczyłeś się wszystkich słówek z tej kategorii!');
+                document.getElementById('back-btn').click();
+            }, 500);
+            return;
+        }
+
+        this.currentWord = unlearnedWords[Math.floor(Math.random() * unlearnedWords.length)];
+
+        const isReverse = document.getElementById('setting-reverse') ? document.getElementById('setting-reverse').checked : false;
+        const promptText = isReverse ? this.currentWord.polish : this.currentWord.spanish;
+        const answerKey = isReverse ? 'spanish' : 'polish';
+
+        document.getElementById('spanish-word').textContent = promptText;
 
         // Generate options (1 correct, 3 wrong from SAME category if possible, else any category)
         let wrongOptions = categoryWords.filter(w => w !== this.currentWord);
@@ -110,11 +135,10 @@ class FlashcardApp {
 
         const optionsGrid = document.getElementById('options-grid');
         optionsGrid.innerHTML = '';
-
         allOptions.forEach(opt => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
-            btn.textContent = opt.polish;
+            btn.textContent = opt[answerKey];
             btn.onclick = () => this.checkAnswer(opt, btn);
             optionsGrid.appendChild(btn);
         });
@@ -127,12 +151,23 @@ class FlashcardApp {
 
         if (selectedOpt === this.currentWord) {
             btnEle.classList.add('correct');
+            this.currentWord.correctCount++;
             this.handleCorrectAnswer();
         } else {
             btnEle.classList.add('wrong');
+            this.wrongScore++;
+            const soundsEnabled = document.getElementById('setting-sounds').checked;
+            if (soundsEnabled) {
+                this.errorAudio.currentTime = 0;
+                this.errorAudio.play().catch(e => console.log('Error sound blocked:', e));
+            }
+
             // Show correct answer
+            const isReverse = document.getElementById('setting-reverse') ? document.getElementById('setting-reverse').checked : false;
+            const answerKey = isReverse ? 'spanish' : 'polish';
+            
             buttons.forEach(b => {
-                if (b.textContent === this.currentWord.polish) {
+                if (b.textContent === this.currentWord[answerKey]) {
                     b.classList.add('correct');
                 }
             });
@@ -146,28 +181,48 @@ class FlashcardApp {
     handleCorrectAnswer() {
         this.score++;
 
-        // Play sound (ignore if it fails to load)
-        this.audio.currentTime = 0;
-        this.audio.play().catch(e => console.log('Audio play blocked or missing file:', e));
+        const soundsEnabled = document.getElementById('setting-sounds').checked;
+        const animationsEnabled = document.getElementById('setting-animations').checked;
 
-        // Show happy dog with a random image (jamnik1, jamnik2 or jamnik3)
-        const dog = document.getElementById('happy-dog');
-        const randomDog = Math.floor(Math.random() * 3) + 1;
-        dog.src = `images/jamnik${randomDog}.png`;
-        dog.classList.add('show');
+        if (soundsEnabled) {
+            this.audio.currentTime = 0;
+            this.audio.play().catch(e => console.log('Audio play blocked or missing file:', e));
+        }
 
-        // Trigger confetti
-        this.fireConfetti();
+        if (animationsEnabled) {
+            const dog = document.getElementById('happy-dog');
+            const randomDog = Math.floor(Math.random() * 3) + 1;
+            dog.src = `images/jamnik${randomDog}.png`;
+            dog.classList.add('show');
 
-        // Wait and go next
-        setTimeout(() => {
-            dog.classList.remove('show');
-            this.nextCard();
-        }, 2000);
+            this.fireConfetti();
+
+            setTimeout(() => {
+                dog.classList.remove('show');
+                this.nextCard();
+            }, 2000);
+        } else {
+            setTimeout(() => {
+                this.nextCard();
+            }, 1000);
+        }
     }
 
     updateStats() {
-        document.getElementById('stats').textContent = `Poprawne: ${this.score} / ${this.totalAnswered}`;
+        const categoryWords = this.words.filter(w => w.category === this.currentCategory);
+        let learnedAmount = 0;
+        if (categoryWords.length > 0) {
+            learnedAmount = categoryWords.filter(w => w.correctCount >= 2).length;
+            document.getElementById('stats').textContent = `Poprawne: ${this.score} | Błędne: ${this.wrongScore} | Nauczone: ${learnedAmount} / ${categoryWords.length}`;
+
+            const progressFill = document.getElementById('progress-fill');
+            if (progressFill) {
+                const percentage = (learnedAmount / categoryWords.length) * 100;
+                progressFill.style.width = `${percentage}%`;
+            }
+        } else {
+            document.getElementById('stats').textContent = `Poprawne: ${this.score} | Błędne: ${this.wrongScore} | Nauczone: 0`;
+        }
     }
 
     setupEventListeners() {

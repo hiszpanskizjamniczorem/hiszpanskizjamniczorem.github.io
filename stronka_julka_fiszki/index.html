@@ -19,6 +19,11 @@
             <h1>Fiszki z Jamniczorem</h1>
             <p>Wybierz kategorię i rozpocznij naukę!</p>
         </div>
+        <div class="settings-panel">
+            <label><input type="checkbox" id="setting-sounds" checked> Dźwięki</label>
+            <label><input type="checkbox" id="setting-animations" checked> Animacje</label>
+            <label><input type="checkbox" id="setting-reverse"> Odwrotnie (PL ➔ ES)</label>
+        </div>
     </header>
 
     <main class="container">
@@ -45,7 +50,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill"></div>
             </div>
-            <p id="stats" class="stats-text">Poprawne: 0</p>
+            <p id="stats" class="stats-text">Poprawne: 0 | Błędne: 0 | Nauczone: 0</p>
         </section>
     </main>
 
