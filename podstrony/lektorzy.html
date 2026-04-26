@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lektorzy - Hiszpański z jamniczorem</title>
+    <meta name="description" content="Poznaj naszych lektorów! Hiszpański z Jamniczorem 🐶🇪🇸.">
+    <!-- Preconnect to Google Fonts and Fontshare -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Use Inter and Pally fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=pally@400,500,700&display=swap" rel="stylesheet">
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body {
+            padding-top: 80px;
+            /* Offset for sticky nav */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar scrolled" id="navbar" style="background-color: var(--primary-red); padding: 10px 0;">
+        <div class="container navbar-container">
+            <a href="../index.html" class="logo">
+                <img src="../Strona HZJ/Assets/Hjz_logo.svg" alt="Hiszpański z jamniczorem Logo">
+            </a>
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle menu">
+                ☰
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="../index.html#about-me">O mnie</a>
+                <a href="lektorzy.html">Lektorzy</a>
+                <a href="../index.html#reviews">Opinie</a>
+                <a href="cennik.html">Cennik</a>
+                <a href="../index.html#ebook">E-book</a>
+                <a href="../stronka_julka_fiszki/index.html">Fiszki</a>
+                <a href="../index.html#cta-bottom" class="btn btn-secondary btn-nav">Zapisz się🔥</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Lektorzy -->
+    <section class="lektorzy-section" id="lektorzy">
+        <div class="container">
+            <div class="lektorzy-header-container">
+                <h2 class="section-title text-center lektorzy-title">Poznaj naszych lektorów</h2>
+                <div class="lektorzy-arrow">
+                    <!-- Ręcznie narysowana, zawijana strzałka obrócona i obok napisu -->
+                    <svg width="70" height="80" viewBox="0 0 70 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 10 20 C 50 -10, 80 40, 30 75" stroke="var(--primary-red)" stroke-width="5" stroke-linecap="round" fill="none"/>
+                        <!-- Grot obrócony jeszcze bardziej w dół/lewo -->
+                        <path d="M 25 55 L 30 75 L 50 65" stroke="var(--primary-red)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="rotate(25 30 75)"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="lektorzy-grid">
+                <!-- Lektor 1 -->
+                <div class="lektor-card">
+                    <div class="lektor-image">
+                        <img src="lektorzy_photos/maria_wozniak.png" alt="Maria" loading="lazy">
+                    </div>
+                    <div class="lektor-content">
+                        <h3 class="lektor-name">MARIA</h3>
+                        <p><strong>¡Hola!</strong></p>
+                        <p>Nazywam się Marysia i jestem studentką Lingwistyki Stosowanej. Nauka języków jest moją pasją, obecnie rozwijam moje umiejętności języka hiszpańskiego, angielskiego i arabskiego.</p>
+                        <p>Moja przygoda z językiem hiszpańskim rozpoczęła się w liceum, od tej pory posługuje się nim biegle i uczę innych. Staram się zarazić wszystkich moją miłością do języków obcych i przedstawiać je w przyjemny sposób - dopasowany do moich uczniów!</p>
+                        <p>Do zobaczenia na zajęciach!</p>
+                    </div>
+                </div>
+
+                <!-- Lektor 2 -->
+                <div class="lektor-card">
+                    <div class="lektor-image">
+                        <img src="lektorzy_photos/martyna_dul.JPG" alt="Martyna" loading="lazy">
+                    </div>
+                    <div class="lektor-content">
+                        <h3 class="lektor-name">MARTYNA</h3>
+                        <p><strong>¡Hola a todos!</strong></p>
+                        <p>Mam na imię Martyna i moja przygoda z hiszpańskim trwa już 7 lat!</p>
+                        <p>Zaczęło się tak, jak u wielu z Was – od serialu „Violetta”! Te piosenki, emocje, energia… Sprawiły, że z ciekawości zajrzałam do pierwszego podręcznika. A potem? Potem to już była czysta miłość!</p>
+                        <p>Dziś jestem studentką 3 roku filologii hiszpańskiej, a język hiszpański to nie tylko moje studia – to moja pasja, sposób na życie i okno na cały, fascynujący świat kultur krajów hiszpańskojęzycznych.</p>
+                    </div>
+                </div>
+
+                <!-- Lektor 3 -->
+                <div class="lektor-card">
+                    <div class="lektor-image">
+                        <img src="lektorzy_photos/ania_soniak.jpeg" alt="Ania" loading="lazy">
+                    </div>
+                    <div class="lektor-content">
+                        <h3 class="lektor-name">ANIA</h3>
+                        <p><strong>¡Hola mundo! ☕️🇪🇸</strong></p>
+                        <p>Mam na imię Ania, mam 23 lata i jestem studentką studiów magisterskich filologii hiszpańskiej.</p>
+                        <p>Moja przygoda z językiem hiszpańskim zaczęła się niewinnie — na pierwszym roku studiów licencjackich, kiedy miał to być po prostu „inny” kierunek. Szybko jednak okazało się, że to coś znacznie więcej.</p>
+                        <p>Dziś hiszpański to moja codzienność i stały element mojego życia. Przypomina dobre cafecito — trudno wyobrazić sobie dzień bez niego. Z przyjemnością zarażam nim innych. No to co, cafecito?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-info">
+                <h3>Julia Murdzek</h3>
+                <p>Ucz się bez spiny! 🐶🇪🇸</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html#about-me">O mnie</a>
+                <a href="lektorzy.html">Lektorzy</a>
+                <a href="../index.html#reviews">Opinie</a>
+                <a href="cennik.html">Cennik</a>
+                <a href="../index.html#ebook">E-book</a>
+                <a href="../stronka_julka_fiszki/index.html">Fiszki</a>
+                <a href="https://cal.com/hiszpanskizjamniczorem/30min">Zapisz się</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Hiszpański z jamniczorem. Wszelkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Local Script -->
+    <script src="../script.js"></script>
+</body>
+
+</html>
